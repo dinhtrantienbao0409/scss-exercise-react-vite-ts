@@ -1,12 +1,14 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import LandingPage from "./components/landingPage/landingPage";
+import Section1 from "./components/section1/section1";
+import Navbar from "./components/navbar/navbar";
 
 function App() {
   return (
     <div className="App">
-      <LandingPage />
+      <Navbar />
+      <Section1 />
+      <Section1 />
+      <Section1 />
     </div>
   );
 }

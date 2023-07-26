@@ -1,0 +1,102 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 5em;
+  background-color: antiquewhite;
+  position: fixed;
+  top: 0%;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+  &__list {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+
+    &__item {
+      cursor: pointer;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    &__toggleButton {
+      cursor: pointer;
+      &__icon {
+        width: 25px;
+        height: 25px;
+        @include svg;
+      }
+      @media screen and (min-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    top: 100%;
+    left: 0%;
+    z-index: 1;
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        padding: 8px 16px;
+        cursor: pointer;
+        text-align: center;
+
+        &:hover {
+          background-color: #f5f5f5;
+        }
+      }
+    }
+  }
+
+  &__heading {
+    @include heading(2em);
+  }
+
+  &__button {
+    @include button($primary-color, white, $primary: false);
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
+    padding: 1em 2em;
+
+    &__list {
+      flex-direction: row;
+      align-items: center;
+
+      &__item {
+        margin: 5px 0;
+      }
+    }
+  }
+
+  &.show-dropdown {
+    .dropdown {
+      display: block;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .dropdown.show {
+      opacity: 1;
+    }
+  }
+}

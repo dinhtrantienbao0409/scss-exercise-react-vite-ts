@@ -1,0 +1,39 @@
+@import "../styles/variables";
+
+@mixin sectionBackground($background-color) {
+  position: relative;
+  background-color: $background-color;
+  height: 100vh;
+  width: 100%;
+}
+
+@mixin button($background-color, $color, $primary: true) {
+  padding: 0.8em 3em;
+  border-radius: 0%;
+  border: none;
+  color: $color;
+  background-color: $background-color;
+  border: 2px solid $background-color;
+  font-weight: 700;
+  cursor: pointer;
+  @if $primary {
+    background-color: white;
+    border: 2px solid $background-color;
+    color: $background-color;
+  }
+}
+
+@mixin text() {
+  color: $secondary-color;
+}
+
+@mixin heading($font-size) {
+  font-size: $font-size;
+  color: $primary-color;
+  font-weight: bold;
+}
+
+@mixin svg() {
+  filter: brightness(0) saturate(100%) invert(3%) sepia(57%) saturate(5189%)
+    hue-rotate(217deg) brightness(125%) contrast(94%);
+}
