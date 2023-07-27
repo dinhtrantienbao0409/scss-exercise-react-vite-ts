@@ -3,7 +3,8 @@
 @mixin sectionBackground($background-color) {
   position: relative;
   background-color: $background-color;
-  height: 100vh;
+  height: calc(100vh - 200px);
+  box-sizing: border-box;
   width: 100%;
 }
 
@@ -25,15 +26,27 @@
 
 @mixin text() {
   color: $secondary-color;
+  line-height: 2;
+  letter-spacing: 0.05em;
 }
 
 @mixin heading($font-size) {
   font-size: $font-size;
   color: $primary-color;
   font-weight: bold;
+  line-height: 1.5;
 }
 
-@mixin svg() {
+@mixin svg($width, $height) {
+  width: $width;
+  height: $height;
   filter: brightness(0) saturate(100%) invert(3%) sepia(57%) saturate(5189%)
     hue-rotate(217deg) brightness(125%) contrast(94%);
+}
+
+@mixin socialIcon($width, $height) {
+  width: $width;
+  height: $height;
+  filter: brightness(0) saturate(100%) invert(80%) sepia(9%) saturate(192%)
+    hue-rotate(155deg) brightness(94%) contrast(82%);
 }

@@ -18,19 +18,17 @@
     flex-direction: row;
     gap: 2em;
 
-    &__item {
-      cursor: pointer;
-      @media screen and (max-width: 768px) {
-        display: none;
-      }
-    }
+    // &.isDisplay {
+    //   cursor: pointer;
+    //   @media screen and (max-width: 768px) {
+    //     display: none;
+    //   }
+    // }
 
     &__toggleButton {
       cursor: pointer;
       &__icon {
-        width: 25px;
-        height: 25px;
-        @include svg;
+        @include svg(1.5em, 1.5em);
       }
       @media screen and (min-width: 768px) {
         display: none;
@@ -50,11 +48,13 @@
       display: none;
     }
 
-    ul {
+    &__list {
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
 
-      li {
+      &__item {
         padding: 8px 16px;
         cursor: pointer;
         text-align: center;
@@ -74,6 +74,27 @@
     @include button($primary-color, white, $primary: false);
   }
 
+  &.show-dropdown {
+    .dropdown {
+      display: block;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .dropdown.show {
+      opacity: 1;
+    }
+  }
+
+  &.navbar-hidden {
+    top: -80px;
+    transition: 0.5s;
+  }
+
+  &.navbar-visible {
+    transition: 0.5s;
+  }
+
   @media screen and (max-width: 768px) {
     flex-direction: row;
     padding: 1em 2em;
@@ -85,18 +106,6 @@
       &__item {
         margin: 5px 0;
       }
-    }
-  }
-
-  &.show-dropdown {
-    .dropdown {
-      display: block;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .dropdown.show {
-      opacity: 1;
     }
   }
 }

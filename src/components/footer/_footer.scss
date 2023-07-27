@@ -1,0 +1,79 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 5em;
+  background-color: antiquewhite;
+  box-sizing: border-box;
+
+  &__line {
+    width: 100%;
+    height: 1px;
+    background-color: #cdd1d4;
+  }
+
+  &__topContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1em;
+
+    @media screen and (max-width: 768px) {
+      align-items: last baseline;
+    }
+
+    span {
+      color: #939ea4;
+      font-size: 0.8em;
+    }
+
+    &__heading {
+      @include heading(1.5em);
+    }
+
+    &__button {
+      @include button($primary-color, white, $primary: false);
+
+      @media screen and (max-width: 768px) {
+        display: none;
+        transition: 0.5s;
+      }
+    }
+  }
+
+  &__botContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1em;
+
+    &__list {
+      display: flex;
+      flex-direction: row;
+      gap: 2em;
+      @media screen and (max-width: 768px) {
+        display: none;
+        transition: 0.5s;
+      }
+
+      &__item {
+        @include text();
+        cursor: pointer;
+      }
+    }
+
+    &__socialIcon {
+      display: flex;
+      flex-direction: row;
+      gap: 1em;
+
+      &__item {
+        @include socialIcon(1em, 1em);
+        cursor: pointer;
+      }
+    }
+  }
+}

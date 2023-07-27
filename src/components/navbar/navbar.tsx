@@ -2,48 +2,65 @@ import React, { useState, useRef, useEffect } from "react";
 import "./_navbar.scss";
 import { navService } from "../../constants";
 import { ReactComponent as ListIcon } from "../../assets/svg/list.svg";
+import NavLink from "../navLink/navLink";
+import { Link } from "react-scroll";
+import { styled } from "styled-components";
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  // const dropdownRef = useRef<HTMLDivElement>(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevIsDropdownOpen) => !prevIsDropdownOpen);
   };
 
-  // useEffect(() => {
-  //   function handleClickOutside(e: MouseEvent) {
-  //     if (
-  //       dropdownRef.current &&
-  //       !dropdownRef.current.contains(e.target as Node)
-  //     ) {
-  //       setIsDropdownOpen(false);
-  //     }
-  //   }
+  const handleScroll = () => {
+    if (window.scrollY > lastScrollY) {
+      setVisible(false);
+      setIsDropdownOpen(false);
+    } else {
+      setVisible(true);
+    }
+    setLastScrollY(window.scrollY);
+    setIsDropdownOpen(false);
+  };
 
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
   return (
     <>
-      <div className={`navbar ${isDropdownOpen ? "show-dropdown" : ""}`}>
+      <div
+        className={`navbar ${isDropdownOpen ? "show-dropdown" : ""} ${
+          visible ? "navbar-visible" : "navbar-hidden"
+        }`}
+      >
         <ul className="navbar__list">
-          {navService &&
-            navService.map((item) => (
-              <li className="navbar__list__item" key={item.id}>
-                {item.name}
-              </li>
-            ))}
+          {navService && navService.map((item) => <NavLink data={item} />)}
           <li className="navbar__list__toggleButton" onClick={toggleDropdown}>
             <ListIcon className="navbar__list__toggleButton__icon" />
           </li>
           {isDropdownOpen && (
             <div className="navbar__dropdown">
-              <ul>
+              <ul className="navbar__dropdown__list">
                 {navService &&
-                  navService.map((item) => <li key={item.id}>{item.name}</li>)}
+                  navService.map((item) => (
+                    <Link
+                      className="navbar__dropdown__list__item"
+                      activeClass="active"
+                      to={item.name}
+                      spy={true}
+                      smooth={true}
+                      duration={500}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
               </ul>
             </div>
           )}
