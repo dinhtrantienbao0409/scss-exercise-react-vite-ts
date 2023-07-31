@@ -1,0 +1,9 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.navLink {
+  cursor: pointer;
+  @media screen and (max-width: $mediumResValue) {
+    display: none;
+  }
+}

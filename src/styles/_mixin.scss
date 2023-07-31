@@ -1,11 +1,14 @@
 @import "../styles/variables";
 
-@mixin sectionBackground($background-color) {
+@mixin sectionBackground($imageUrl, $backgroundColor) {
   position: relative;
-  background-color: $background-color;
-  height: calc(100vh - 200px);
+  background-color: $backgroundColor;
+  background-image: url($imageUrl);
+  height: 100vh;
   box-sizing: border-box;
   width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 @mixin button($background-color, $color, $primary: true) {

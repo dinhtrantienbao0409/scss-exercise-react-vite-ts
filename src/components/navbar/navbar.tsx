@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./_navbar.scss";
+import "./navbar.scss";
 import { navService } from "../../constants";
 import { ReactComponent as ListIcon } from "../../assets/svg/list.svg";
 import NavLink from "../navLink/navLink";
 import { Link } from "react-scroll";
-import { styled } from "styled-components";
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -41,17 +40,19 @@ export default function Navbar() {
         }`}
       >
         <ul className="navbar__list">
-          {navService && navService.map((item) => <NavLink data={item} />)}
+          {navService &&
+            navService.map((item) => <NavLink key={item.id} data={item} />)}
           <li className="navbar__list__toggleButton" onClick={toggleDropdown}>
             <ListIcon className="navbar__list__toggleButton__icon" />
           </li>
           {isDropdownOpen && (
-            <div className="navbar__dropdown">
-              <ul className="navbar__dropdown__list">
+            <div className="navbar__list__dropdown">
+              <ul className="navbar__list__dropdown__service">
                 {navService &&
                   navService.map((item) => (
                     <Link
-                      className="navbar__dropdown__list__item"
+                      key={item.id}
+                      className="navbar__list__dropdown__service__item"
                       activeClass="active"
                       to={item.name}
                       spy={true}
@@ -60,6 +61,7 @@ export default function Navbar() {
                     >
                       {item.name}
                     </Link>
+                    // <NavLink key={item.id} data={item} />
                   ))}
               </ul>
             </div>

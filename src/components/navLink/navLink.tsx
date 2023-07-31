@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-scroll";
-import "./_navLink.scss";
+import "./navLink.scss";
 interface NavLinkProps {
   className: string;
   activeClass: "active";
@@ -12,6 +12,8 @@ interface NavLinkProps {
 }
 
 export default function NavLink(data: any) {
+  const [visible, setVisible] = useState(true);
+
   return (
     <Link
       className="navLink"

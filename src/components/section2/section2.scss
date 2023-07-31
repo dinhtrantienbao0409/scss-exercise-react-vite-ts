@@ -1,0 +1,58 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.section2 {
+  @include sectionBackground("", white);
+  &__content {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    right: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    @media screen and (max-width: $maxResValue) {
+      flex-direction: column;
+    }
+
+    &__left {
+      padding: 30px;
+
+      &__heading {
+        @include heading(1.5em);
+        margin-bottom: 2em;
+      }
+
+      &__description {
+        @include text;
+        margin: 0 0 2em 0;
+      }
+
+      &__feature {
+        display: flex;
+        flex-direction: row;
+
+        &__icon {
+          margin-top: 3em;
+        }
+        span {
+          @include text;
+          font-size: 0.8em;
+        }
+
+        h1 {
+          @include heading(1em);
+          margin: 1em 0;
+        }
+      }
+    }
+
+    &__image {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      margin: 0 4em;
+    }
+  }
+}

@@ -2,7 +2,7 @@
 @import "../../styles/variables";
 
 .pricing {
-  @include sectionBackground(#e7ecff);
+  @include sectionBackground("", white);
 
   &__content {
     position: absolute;
@@ -48,5 +48,10 @@
     &__button {
       @include button($primary-color, white, $primary: false);
     }
+  }
+
+  &__background {
+    width: 100%;
+    height: inherit;
   }
 }

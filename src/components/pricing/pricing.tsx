@@ -1,5 +1,6 @@
 import React from "react";
 import "./_pricing.scss";
+import Rectangle from "../../assets/Rectangle.png";
 
 export default function Pricing() {
   return (
@@ -19,6 +20,7 @@ export default function Pricing() {
         <p>See, One price. Simple.</p>
         <button className="pricing__content__button">Purchase Now</button>
       </div>
+      <img src={Rectangle} alt="rectangle" className="pricing__background" />
     </div>
   );
 }

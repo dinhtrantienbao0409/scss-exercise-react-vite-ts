@@ -1,5 +1,5 @@
 import React from "react";
-import "./_footer.scss";
+import "./footer.scss";
 import { navService } from "../../constants";
 import { ReactComponent as FacebookIcon } from "../../assets/svg/facebookIcon.svg";
 import { ReactComponent as LinkedinIcon } from "../../assets/svg/linkedinIcon.svg";
